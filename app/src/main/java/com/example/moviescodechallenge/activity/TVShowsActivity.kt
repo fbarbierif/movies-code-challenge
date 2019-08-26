@@ -53,7 +53,6 @@ class TVShowsActivity : AppCompatActivity(), TVShowsView {
         })
 
         TVShowsPresenter = TVShowsPresenter(this)
-        showProgressBar()
         TVShowsPresenter.getTVShowsData(firstPage.toString())
     }
 

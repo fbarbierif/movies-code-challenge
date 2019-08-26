@@ -1,6 +1,7 @@
 package com.example.moviescodechallenge.presenter
 
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import com.example.moviescodechallenge.dto.Result
 import com.example.moviescodechallenge.model.TVShowsModel
 import com.example.moviescodechallenge.view.TVShowsView
@@ -14,7 +15,12 @@ import rx.schedulers.Schedulers
  */
 class TVShowsPresenter(internal val tvShowsView: TVShowsView) {
 
+    @VisibleForTesting
     fun getTVShowsData(page: String) {
+
+        if(page.equals(FIRST_PAGE)){
+            tvShowsView.showProgressBar()
+        }
 
         val observable = TVShowsModel.instance.getMoviesData(page)
         observable.subscribeOn(Schedulers.io())
@@ -35,6 +41,7 @@ class TVShowsPresenter(internal val tvShowsView: TVShowsView) {
                             tvShowsView.hideProgressBar()
                         } else {
                             tvShowsView.showTVShowsData(result)
+
                         }
                     }
                 })
@@ -42,5 +49,6 @@ class TVShowsPresenter(internal val tvShowsView: TVShowsView) {
 
     companion object {
         private val REQUEST_ERROR = "Request error"
+        private val FIRST_PAGE = "1"
     }
 }
