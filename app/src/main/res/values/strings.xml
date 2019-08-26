@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Movies Code Challenge</string>
+    <string name="tv_shows_list_activity_title">TV Shows List</string>
 </resources>
